@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+
+<head>
+  <title>Register</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="SofasRUs">
+  <meta name="author" content="Ashley Tanner-Mortell">
+  <meta name="viewport" content="width=device-width, inital=scale=1">
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+  <div class="head">
+    <h1 style="text-align:center;">SOFAS R US</h1>
+  </div>
+
+  <!-- Navigation Bar -->
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="sofas.html">Sofas</a></li>
+    <li><a class="active" href="register.html">Register</a></li>
+    <li><a href="report.html">Website Report</a></li>
+  </ul>
+
+
+
+  <!-- Forms -->
+  <form  onsubmit="return validate();">
+    <div class="containerform">
+      <h1>Register</h1>
+      <p>Please fill in this form to create an account to save your shopping.</p>
+      <hr>
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" id="username" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+      <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+      <hr>
+      <button type="submit" class="registerbtn">Register</button>
+    </div>
+</form>
+
+<!-- Validation -->
+<script>
+  function validate() {
+    var value = document.getElementById('username').value;
+    if (value.length < 6) {
+      alert('Username needs to be above 6 characters.')
+      return false;
+    }
+    var value = document.getElementById('psw').value;
+    if (value.length < 6) {
+      alert('Password needs to be above 6 characters.')
+      return false;
+    }
+    var value = document.getElementById('psw').value;
+    if (value != document.getElementById('psw-repeat').value) {
+      alert('Passwords do not match.')
+      return false;
+    }
+    alert('Account Created!')
+    return true;
+  }
+</script>
+
+    <!-- Footer -->
+    <footer class="bold" style="bottom:0; position:fixed;">
+      Email: SofasRUs@gmail.co.uk ----- Phone: 07473930778
+    </footer>
+</body>
+
+</html>

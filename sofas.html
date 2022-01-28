@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+
+<head>
+  <title>Sofas</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="SofasRUs">
+  <meta name="author" content="Ashley Tanner-Mortell">
+  <meta name="viewport" content="width=device-width, inital=scale=1">
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body style="text-align:center">
+  <div class="head">
+    <h1 style="text-align:center;">SOFAS R US</h1>
+  </div>
+
+  <!-- Navigation Bar -->
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a class="active" href="sofas.html">Sofas</a></li>
+    <li><a href="register.html">Register</a></li>
+    <li><a href="report.html">Website Report</a></li>
+  </ul>
+
+  <!-- Hidden Data -->
+  <p class="bold">Click on a sofa to display more information.</p>
+  <p class="bold">(Only works on select browsers, will show in demonstration.)</p>
+  <p id='showSOFA'></p>
+  <table id="table"></table>
+
+  <!-- XML Table Script -->
+  <script>
+    var x, xmlhttp, xmlDoc
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "sofas.xml", false);
+    xmlhttp.send();
+    xmlDoc = xmlhttp.responseXML;
+    x = xmlDoc.getElementsByTagName("SOFA");
+    table = "<tr><th>Brand</th><th>Material</th><th>Colour</th></tr>";
+    for (i = 0; i < x.length; i++) {
+      table += "<tr onclick='displaySOFA(" + i + ")'><td>";
+      table += x[i].getElementsByTagName("brand")[0].childNodes[0].nodeValue;
+      table += "</td><td>";
+      table += x[i].getElementsByTagName("material")[0].childNodes[0].nodeValue;
+      table += "</td><td>";
+      table += x[i].getElementsByTagName("color")[0].childNodes[0].nodeValue;
+      table += "</td></tr>";
+    }
+    document.getElementById("table").innerHTML = table;
+
+    function displaySOFA(i) {
+      document.getElementById("showSOFA").innerHTML =
+        "Brand: " +
+        x[i].getElementsByTagName("brand")[0].childNodes[0].nodeValue +
+        "<br>Customer Rating: " +
+        x[i].getElementsByTagName("rating")[0].childNodes[0].nodeValue +
+        "<br>ProductId: " +
+        x[i].getElementsByTagName("productid")[0].childNodes[0].nodeValue +
+        "<br>Price: " +
+        x[i].getElementsByTagName("price")[0].childNodes[0].nodeValue;
+    }
+  </script>
+
+  <!-- Footer -->
+  <footer class="bold" style="bottom:0; position:fixed;">
+    Email: SofasRUs@gmail.co.uk ----- Phone: 07473930778
+  </footer>
+</body>
+
+</html>
